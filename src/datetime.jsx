@@ -1,8 +1,22 @@
+import { useEffect, useState } from "react";
+
 function Datetime() {
-    let date= new Date();
+    const [time,setTime]=useState(new Date())
+    
+    useEffect(()=>{
+        const intervalId=setInterval(()=>{
+            setTime(new Date());
+        },1000);
+
+        return ()=>{
+            clearInterval(intervalId);
+        }
+
+    },[])
+
     
    return <p>
-       This is the current time: {date.toLocaleDateString()} - {date.toLocaleTimeString()}
+       This is the current time: {time.toLocaleDateString()} - {time.toLocaleTimeString()}
    </p>
    
     
